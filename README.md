@@ -5,8 +5,8 @@ Example
 -------
 ```python
 >>> import neis
->>> client = neis.Client('서울')
->>> schools = client.search_school('휘문')
+>>> client = neis.Client(u'서울')
+>>> schools = client.search_school(u'휘문')
 >>> print schools
 [<School: 휘문중학교>, <School: 휘문고등학교>]
 
