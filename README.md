@@ -22,3 +22,7 @@ Example
 
 `School.get_weekly_meals()` takes `year`, `month`, `day` and `type` for parameters.
 `type` can be 1(breakfast), 2(lunch), 3(dinner).
+
+Note
+----
+pyneis is developed in Python 2.7.9
