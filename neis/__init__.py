@@ -1,9 +1,8 @@
-from __future__ import unicode_literals
-
-__version__ = '0.1.1'
-__author__ = 'Halla Kim'
-__license__ = 'MIT'
-__email__ = 'hallazzang@gmail.com'
+__version__ = '0.1.7'
+__author__ = 'HallaZzang'
+__author_email__ = 'hallazzang@gmail.com'
+__license__ = 'MIT License'
+__copyright__ = 'Copyright 2015 by HallaZzang'
 
 USER_AGENT = 'pyneis/{}'.format(__version__)
 
