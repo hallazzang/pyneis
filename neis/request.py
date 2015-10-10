@@ -1,7 +1,8 @@
-# coding: utf-8
+from __future__ import unicode_literals
 
 import requests
-import neis
+
+from . import USER_AGENT
 
 class RequestClient(object):
     def __init__(self, domain):
@@ -11,7 +12,7 @@ class RequestClient(object):
         url = 'http://{}{}'.format(self.domain, path)
 
         headers = {
-            'User-Agent': neis.USER_AGENT,
+            'User-Agent': USER_AGENT,
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
         }
         if add_headers:

@@ -1,21 +1,23 @@
 # coding: utf-8
 
+from __future__ import unicode_literals
+
 import sys
 
 ALLERGY_TABLE = (
-    (u'①', u'난류'),
-    (u'②', u'우유'),
-    (u'③', u'메밀'),
-    (u'④', u'땅콩'),
-    (u'⑤', u'대두'),
-    (u'⑥', u'밀'),
-    (u'⑦', u'고등어'),
-    (u'⑧', u'게'),
-    (u'⑨', u'새우'),
-    (u'⑩', u'돼지고기'),
-    (u'⑪', u'복숭아'),
-    (u'⑫', u'토마토'),
-    (u'⑬', u'아황산염')
+    ('①', '난류'),
+    ('②', '우유'),
+    ('③', '메밀'),
+    ('④', '땅콩'),
+    ('⑤', '대두'),
+    ('⑥', '밀'),
+    ('⑦', '고등어'),
+    ('⑧', '게'),
+    ('⑨', '새우'),
+    ('⑩', '돼지고기'),
+    ('⑪', '복숭아'),
+    ('⑫', '토마토'),
+    ('⑬', '아황산염')
 )
 
 class Menu(object):
@@ -28,8 +30,12 @@ class Menu(object):
         return self._allergy
 
     def __repr__(self):
-        text = self.text.encode(sys.stdout.encoding or 'utf-8')
-        return '<Menu: {}>'.format(text)
+        ret = '<Menu: {}>'.format(self.text)
+
+        if sys.version_info.major == 2:
+            return ret.encode(sys.stdout.encoding or 'utf-8')
+        else:
+            return ret
 
 class Meal(object):
     @property

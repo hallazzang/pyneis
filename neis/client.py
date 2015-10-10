@@ -1,7 +1,10 @@
-import neis
-from neis.school import School
-from neis.domain import get_proper_domain
-from neis.request import RequestClient
+from __future__ import unicode_literals
+
+import sys
+
+from .school import School
+from .domain import get_proper_domain
+from .request import RequestClient
 
 class Client(object):
     def __init__(self, region_name, **kwargs):
@@ -16,8 +19,9 @@ class Client(object):
         return '<NeisClient: {}>'.format(self.domain)
 
     def search_school(self, school_name):
-        if isinstance(school_name, unicode):
-            school_name = school_name.encode('utf-8')
+        if sys.version_info.major == 2:
+            if isinstance(school_name, str):
+                school_name = school_name.decode(sys.stdout.encoding or 'utf-8')
 
         data = {
             'kraOrgNm': school_name,
@@ -34,7 +38,7 @@ class Client(object):
 
             school._request_client = RequestClient(self.domain)
             school._name = item['kraOrgNm']
-            school._code = unicode(item['orgCode'])
+            school._code = item['orgCode']
             school._course = int(item['schulCrseScCode'])
 
             result.append(school)

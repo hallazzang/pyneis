@@ -1,12 +1,14 @@
-__version__ = '0.1'
-__author__ = 'HallaZzang'
-__license__ = 'MIT Licence'
+from __future__ import unicode_literals
+
+__version__ = '0.1.1'
+__author__ = 'Halla Kim'
+__license__ = 'MIT'
 __email__ = 'hallazzang@gmail.com'
 
 USER_AGENT = 'pyneis/{}'.format(__version__)
 
-from neis.client import Client
-from neis.domain import get_proper_domain
+from .client import Client
+from .domain import get_proper_domain
 
 __all__ = [
     'Client',
