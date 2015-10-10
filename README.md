@@ -1,6 +1,12 @@
 # pyneis
 python http client for Neis service(http://neis.go.kr/)
 
+Installation
+------------
+```bash
+$ pip install pyneis
+```
+
 Example
 -------
 ```python
