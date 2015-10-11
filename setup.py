@@ -1,25 +1,36 @@
+import re
 import codecs
 
 from setuptools import setup
 
-from neis import __version__, __author__, __author_email__
+def get_values(path):
+    values = {}
+    pattern = re.compile('^__([\w_]+)__\s*=\s*\'(.+)\'$')
+    with codecs.open(path, encoding='utf-8') as f:
+        for line in f:
+            matched = pattern.match(line)
+            if matched:
+                values.update(dict([matched.groups()]))
+    return values
 
 with codecs.open('README.md', encoding='utf-8') as f:
     long_description = f.read()
 
+values = get_values('neis/__init__.py')
+
 setup(
     name='pyneis',
-    version=__version__,
+    version=values['version'],
 
     description='python http client for Neis service(http://neis.go.kr/)',
     long_description=long_description,
 
     url='https://github.com/HallaZzang/pyneis',
 
-    author=__author__,
-    author_email=__author_email__,
+    author=values['author'],
+    author_email=values['author_email'],
 
-    license='MIT',
+    license='MIT License',
 
     classifiers=[
         'Development Status :: 3 - Alpha',

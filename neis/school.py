@@ -59,9 +59,9 @@ class School(object):
                 for chunk in temp.split('||'):
                     text = re.sub('[①-⑬]+', '', chunk)
 
-                    match = re.search('[①-⑬]+', chunk)
-                    if match:
-                        allergy = match.group(0)
+                    matched = re.search('[①-⑬]+', chunk)
+                    if matched:
+                        allergy = matched.group(0)
                     else:
                         allergy = ''
 
