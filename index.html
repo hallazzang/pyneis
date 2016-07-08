@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>pyneis by hallazzang</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>pyneis</h1>
+        <p>python http client for Neis service(http://neis.go.kr/)</p>
+
+        <p class="view"><a href="https://github.com/hallazzang/pyneis">View the Project on GitHub <small>hallazzang/pyneis</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/hallazzang/pyneis/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/hallazzang/pyneis/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/hallazzang/pyneis">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="pyneis" class="anchor" href="#pyneis" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>pyneis</h1>
+
+<p>python http client for Neis service(<a href="http://neis.go.kr/">http://neis.go.kr/</a>)</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ pip install pyneis</pre></div>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-k">import</span> neis
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> client <span class="pl-k">=</span> neis.Client(<span class="pl-s"><span class="pl-pds">'</span>서울<span class="pl-pds">'</span></span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> schools <span class="pl-k">=</span> client.search_school(<span class="pl-s"><span class="pl-pds">'</span>휘문<span class="pl-pds">'</span></span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-c1">print</span> schools
+[<span class="pl-k">&lt;</span>School: 휘문중학교<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>School: 휘문고등학교<span class="pl-k">&gt;</span>]
+
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> meals <span class="pl-k">=</span> schools[<span class="pl-c1">1</span>].get_weekly_meals(<span class="pl-c1">2015</span>, <span class="pl-c1">10</span>, <span class="pl-c1">10</span>, <span class="pl-c1">2</span>)
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-c1">print</span> meals
+[<span class="pl-k">&lt;</span>Meal: Empty<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Meal: <span class="pl-c1">6</span> Menus<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Meal: <span class="pl-c1">6</span> Menus<span class="pl-k">&gt;</span>,
+ <span class="pl-k">&lt;</span>Meal: <span class="pl-c1">6</span> Menus<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Meal: <span class="pl-c1">6</span> Menus<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Meal: Empty<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Meal: Empty<span class="pl-k">&gt;</span>]
+
+<span class="pl-k">&gt;&gt;</span><span class="pl-k">&gt;</span> <span class="pl-c1">print</span> meals[<span class="pl-c1">1</span>].menus
+[<span class="pl-k">&lt;</span>Menu: 혼합잡곡밥<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Menu: 돈육김치찌개<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Menu: 안동찜닭<span class="pl-k">&gt;</span>,
+ <span class="pl-k">&lt;</span>Menu: 콩나물무침<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Menu: 삼치살양념구이<span class="pl-k">&gt;</span>, <span class="pl-k">&lt;</span>Menu: 석박지<span class="pl-k">&gt;</span>]</pre></div>
+
+<p><code>School.get_weekly_meals()</code> takes <code>year</code>, <code>month</code>, <code>day</code> and <code>type</code> for parameters.
+<code>type</code> can be 1(breakfast), 2(lunch), 3(dinner).</p>
+
+<h2>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note</h2>
+
+<p>pyneis is developed in Python 2.7.9</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/hallazzang">hallazzang</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

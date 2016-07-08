@@ -1,0 +1,6 @@
+{
+  "name": "pyneis",
+  "tagline": "python http client for Neis service(http://neis.go.kr/)",
+  "body": "# pyneis\r\npython http client for Neis service(http://neis.go.kr/)\r\n\r\nInstallation\r\n------------\r\n```bash\r\n$ pip install pyneis\r\n```\r\n\r\nExample\r\n-------\r\n```python\r\n>>> import neis\r\n>>> client = neis.Client('서울')\r\n>>> schools = client.search_school('휘문')\r\n>>> print schools\r\n[<School: 휘문중학교>, <School: 휘문고등학교>]\r\n\r\n>>> meals = schools[1].get_weekly_meals(2015, 10, 10, 2)\r\n>>> print meals\r\n[<Meal: Empty>, <Meal: 6 Menus>, <Meal: 6 Menus>,\r\n <Meal: 6 Menus>, <Meal: 6 Menus>, <Meal: Empty>, <Meal: Empty>]\r\n\r\n>>> print meals[1].menus\r\n[<Menu: 혼합잡곡밥>, <Menu: 돈육김치찌개>, <Menu: 안동찜닭>,\r\n <Menu: 콩나물무침>, <Menu: 삼치살양념구이>, <Menu: 석박지>]\r\n```\r\n\r\n`School.get_weekly_meals()` takes `year`, `month`, `day` and `type` for parameters.\r\n`type` can be 1(breakfast), 2(lunch), 3(dinner).\r\n\r\nNote\r\n----\r\npyneis is developed in Python 2.7.9\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
