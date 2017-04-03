@@ -4,22 +4,6 @@ from __future__ import unicode_literals
 
 import sys
 
-ALLERGY_TABLE = (
-    ('①', '난류'),
-    ('②', '우유'),
-    ('③', '메밀'),
-    ('④', '땅콩'),
-    ('⑤', '대두'),
-    ('⑥', '밀'),
-    ('⑦', '고등어'),
-    ('⑧', '게'),
-    ('⑨', '새우'),
-    ('⑩', '돼지고기'),
-    ('⑪', '복숭아'),
-    ('⑫', '토마토'),
-    ('⑬', '아황산염')
-)
-
 class Menu(object):
     @property
     def text(self):

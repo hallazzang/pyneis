@@ -2,18 +2,20 @@ from __future__ import unicode_literals
 
 import sys
 
+import requests
+
 from .school import School
 from .domain import get_proper_domain
-from .request import RequestClient
 
-class Client(object):
+class NeisClient(object):
     def __init__(self, region_name, **kwargs):
         self.domain = get_proper_domain(region_name)
         if not self.domain:
             raise ValueError('unable to find proper domain '
                              'for given region name')
 
-        self._request_client = RequestClient(self.domain)
+        self._session = requests.Session()
+        self._session_freshed = False
 
     def __repr__(self):
         return '<NeisClient: {}>'.format(self.domain)
@@ -25,18 +27,15 @@ class Client(object):
 
         data = {
             'kraOrgNm': school_name,
-            'atptOfcdcScCode': '',
-            'srCode': ''
         }
 
-        response = self._request_client.post('/spr_ccm_cm01_100.do', data)
-        response = response.json()
+        r = self._request('post', '/spr_ccm_cm01_100.ws', json=data).json()
 
         result = []
-        for item in response['resultSVO']['data']['orgDVOList']:
+        for item in r['resultSVO']['orgDVOList']:
             school = School()
 
-            school._request_client = RequestClient(self.domain)
+            school._client = self
             school._name = item['kraOrgNm']
             school._code = item['orgCode']
             school._course = int(item['schulCrseScCode'])
@@ -44,3 +43,12 @@ class Client(object):
             result.append(school)
 
         return result
+
+    def _request(self, method, path, **kwargs):
+        if not self._session_freshed:
+            self._session_freshed = True
+            self._request('get', '/edusys.jsp?page=sts_m40000&returnDomain=S10')
+
+        url = 'http://%s%s' % (self.domain, path)
+
+        return self._session.request(method=method, url=url, **kwargs)

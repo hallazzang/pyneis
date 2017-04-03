@@ -11,17 +11,17 @@ Example
 -------
 ```python
 >>> import neis
->>> client = neis.Client('서울')
+>>> client = neis.NeisClient('서울')
 >>> schools = client.search_school('휘문')
->>> print schools
+>>> print(schools)
 [<School: 휘문중학교>, <School: 휘문고등학교>]
 
 >>> meals = schools[1].get_weekly_meals(2015, 10, 10, 2)
->>> print meals
+>>> print(meals)
 [<Meal: Empty>, <Meal: 6 Menus>, <Meal: 6 Menus>,
  <Meal: 6 Menus>, <Meal: 6 Menus>, <Meal: Empty>, <Meal: Empty>]
 
->>> print meals[1].menus
+>>> print(meals[1].menus)
 [<Menu: 혼합잡곡밥>, <Menu: 돈육김치찌개>, <Menu: 안동찜닭>,
  <Menu: 콩나물무침>, <Menu: 삼치살양념구이>, <Menu: 석박지>]
 ```
@@ -31,4 +31,4 @@ Example
 
 Note
 ----
-pyneis is developed in Python 2.7.9
+pyneis is developed in Python 2.7.13

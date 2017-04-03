@@ -4,7 +4,9 @@ from __future__ import unicode_literals
 
 import sys
 import re
-from bs4 import BeautifulSoup
+from datetime import date
+
+import requests
 
 from .meal import Menu, Meal
 
@@ -31,48 +33,43 @@ class School(object):
 
     def get_weekly_meals(self, year, month, day, type):
         """
-        :params type: 1(breakfast), 2(lunch), 3(dinner)
+        type: 1(breakfast), 2(lunch), 3(dinner)
         """
 
         data = {
+            'insttNm': self._name,
+            'schMmealScCode': type,
+            'schYmd': '%d%02d%02d' % (year, month, day),
             'schulCode': self.code,
             'schulCrseScCode': self.course,
-            'schulKndScCode': '{:02}'.format(self.course)
+            'schulKndScCode': '%02d' % (self.course)
         }
 
-        data['schYmd'] = '{}.{:02}.{:02}'.format(year, month, day)
-        data['schMmealScCode'] = type
-
-        response = self._request_client.post('/sts_sci_md01_001.do', data)
-        soup = BeautifulSoup(response.content, 'html.parser')
-
-        dates = []
-        for col in soup.thead.find_all('th', scope='col'):
-            dates.append(col.get_text(strip=True).split('(')[0])
+        r = self._client._request('post', '/sts_sci_md01_001.ws', json=data).json()
 
         meals = []
-        cols = soup.tbody.find_all('tr')[1].find_all('td', 'textC')
-        for idx, col in enumerate(cols):
+
+        for day in ('sun', 'mon', 'tue', 'wed', 'the', 'fri', 'sat'):
             menus = []
-            temp = col.get_text(strip=True, separator='||')
-            if temp:
-                for chunk in temp.split('||'):
-                    text = re.sub('[①-⑬]+', '', chunk)
 
-                    matched = re.search('[①-⑬]+', chunk)
-                    if matched:
-                        allergy = matched.group(0)
-                    else:
-                        allergy = ''
+            for chunk in r['resultSVO']['weekDietList'][2][day].split('<br />')[:-1]:
+                searched = re.search(r'(?:\d{1,2}\.)+', chunk)
+                allergy = searched.group(0) if searched else None
 
-                    menu = Menu()
-                    menu._text = text
-                    menu._allergy = allergy
+                menu = Menu()
+                menu._text = re.sub(r'(?:\d{1,2}\.)*', '', chunk)
+                menu._allergy = allergy
 
-                    menus.append(menu)
+                menus.append(menu)
+
+            y, m, d = map(
+                int,
+                re.search(r'^(\d{4})\.(\d{2})\.(\d{2})',
+                          r['resultSVO']['weekDietList'][0][day]).groups()
+            )
 
             meal = Meal()
-            meal._date = dates[idx]
+            meal._date = date(y, m, d)
             meal._type = type
             meal._menus = menus
 

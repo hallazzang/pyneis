@@ -5,14 +5,14 @@ from __future__ import unicode_literals
 import sys
 
 DOMAIN_TABLE = (
-    (('서울특별시',), 'stu.sen.go.kr'),
-    (('부산광역시',), 'stu.pen.go.kr'),
-    (('대구광역시',), 'stu.dge.go.kr'),
-    (('인천광역시',), 'stu.ice.go.kr'),
-    (('광주광역시',), 'stu.gen.go.kr'),
-    (('대전광역시',), 'stu.dje.go.kr'),
-    (('울산광역시',), 'stu.use.go.kr'),
-    (('세종특별자치시',), 'stu.sje.go.kr'),
+    (('서울특별시', '서울시'), 'stu.sen.go.kr'),
+    (('부산광역시', '부산시'), 'stu.pen.go.kr'),
+    (('대구광역시', '대구시'), 'stu.dge.go.kr'),
+    (('인천광역시', '인천시'), 'stu.ice.go.kr'),
+    (('광주광역시', '광주시'), 'stu.gen.go.kr'),
+    (('대전광역시', '대전시'), 'stu.dje.go.kr'),
+    (('울산광역시', '울산시'), 'stu.use.go.kr'),
+    (('세종특별자치시', '세종시'), 'stu.sje.go.kr'),
     (('경기도',), 'stu.goe.go.kr'),
     (('강원도',), 'stu.kwe.go.kr'),
     (('충청북도', '충북'), 'stu.cbe.go.kr'),

@@ -25,7 +25,7 @@ setup(
     description='python http client for Neis service(http://neis.go.kr/)',
     long_description=long_description,
 
-    url='https://github.com/HallaZzang/pyneis',
+    url='https://github.com/hallazzang/pyneis',
 
     author=values['author'],
     author_email=values['author_email'],
@@ -54,5 +54,5 @@ setup(
 
     packages=['neis'],
 
-    install_requires=['requests', 'BeautifulSoup4']
+    install_requires=['requests']
 )
