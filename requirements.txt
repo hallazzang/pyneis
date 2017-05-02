@@ -1,0 +1,8 @@
+appdirs==1.4.3
+packaging==16.8
+py==1.4.33
+-e git+https://github.com/hallazzang/pyneis.git@6b1d872f3cfec96fc178e2c19d4ddfb3dca2f680#egg=pyneis
+pyparsing==2.2.0
+pytest==3.0.7
+requests==2.13.0
+six==1.10.0
