@@ -1,6 +1,8 @@
 # pyneis
 python http client for Neis service(http://neis.go.kr/)
 
+![travis-ci](https://secure.travis-ci.org/hallazzang/pyneis.svg)
+
 Installation
 ------------
 ```bash
