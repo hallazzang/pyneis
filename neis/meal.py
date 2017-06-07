@@ -14,7 +14,7 @@ class Menu(object):
         return self._allergy
 
     def __repr__(self):
-        ret = '<Menu: {}>'.format(self.text)
+        ret = '\'{}\''.format(self.text)
 
         if sys.version_info.major == 2:
             return ret.encode(sys.stdout.encoding or 'utf-8')

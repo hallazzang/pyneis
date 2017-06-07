@@ -24,8 +24,8 @@ Example
  <Meal: 6 Menus>, <Meal: 6 Menus>, <Meal: Empty>, <Meal: Empty>]
 
 >>> print(meals[1].menus)
-[<Menu: 혼합잡곡밥>, <Menu: 돈육김치찌개>, <Menu: 안동찜닭>,
- <Menu: 콩나물무침>, <Menu: 삼치살양념구이>, <Menu: 석박지>]
+['혼합잡곡밥', '돈육김치찌개', '안동찜닭',
+ '콩나물무침', '삼치살양념구이', '석박지']
 ```
 
 `School.get_weekly_meals()` takes `year`, `month`, `day` and `type` for parameters.
