@@ -42,16 +42,17 @@ class School(object):
             'schYmd': '%d%02d%02d' % (year, month, day),
             'schulCode': self.code,
             'schulCrseScCode': self.course,
-            'schulKndScCode': '%02d' % (self.course)
+            'schulKndScCode': '%02d' % self.course,
         }
 
         r = self._client._request('post', '/sts_sci_md01_001.ws', json=data).json()
 
-        meals = []
+        if len(r['resultSVO']['weekDietList']) < 3:
+            return None
 
+        meals = []
         for day in ('sun', 'mon', 'tue', 'wed', 'the', 'fri', 'sat'):
             menus = []
-
             for chunk in r['resultSVO']['weekDietList'][2][day].split('<br />')[:-1]:
                 searched = re.search(r'(?:\d{1,2}\.)+', chunk)
                 allergy = searched.group(0) if searched else None
@@ -64,8 +65,9 @@ class School(object):
 
             y, m, d = map(
                 int,
-                re.search(r'^(\d{4})\.(\d{2})\.(\d{2})',
-                          r['resultSVO']['weekDietList'][0][day]).groups()
+                re.search(
+                    r'^(\d{4})\.(\d{2})\.(\d{2})',
+                    r['resultSVO']['weekDietList'][0][day]).groups()
             )
 
             meal = Meal()

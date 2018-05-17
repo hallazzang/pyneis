@@ -49,6 +49,6 @@ class NeisClient(object):
             self._session_freshed = True
             self._request('get', '/edusys.jsp?page=sts_m40000&returnDomain=S10')
 
-        url = 'http://%s%s' % (self.domain, path)
+        url = 'https://%s%s' % (self.domain, path)
 
         return self._session.request(method=method, url=url, **kwargs)
