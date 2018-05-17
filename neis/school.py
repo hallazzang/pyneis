@@ -10,6 +10,7 @@ import requests
 
 from .meal import Menu, Meal
 
+
 class School(object):
     @property
     def name(self):

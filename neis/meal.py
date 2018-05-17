@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 import sys
 
+
 class Menu(object):
     @property
     def text(self):
@@ -20,6 +21,7 @@ class Menu(object):
             return ret.encode(sys.stdout.encoding or 'utf-8')
         else:
             return ret
+
 
 class Meal(object):
     @property

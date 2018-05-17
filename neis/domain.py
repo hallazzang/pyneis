@@ -24,6 +24,7 @@ DOMAIN_TABLE = (
     (('제주특별자치도', '제주도'), 'stu.jje.go.kr'),
 )
 
+
 def get_proper_domain(region_name):
     if sys.version_info.major == 2:
         if isinstance(region_name, str):

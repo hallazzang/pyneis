@@ -7,6 +7,7 @@ import requests
 from .school import School
 from .domain import get_proper_domain
 
+
 class NeisClient(object):
     def __init__(self, region_name, **kwargs):
         self.domain = get_proper_domain(region_name)

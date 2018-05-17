@@ -2,6 +2,7 @@
 
 from neis import NeisClient
 
+
 def test_get_weekly_meals():
     client = NeisClient(u'서울')
     school = client.search_school(u'휘문고등학교')[0]
